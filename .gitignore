@@ -1,0 +1,78 @@
+# ============================================
+#  Archivos compilados de C
+# ============================================
+*.o
+*.obj
+*.out
+*.a
+*.so
+
+# ============================================
+#  Ejecutables (binarios) de C
+# ============================================
+
+close-unused-ports
+services-uninstall
+
+
+# ============================================
+#  Archivos temporales de compilación
+# ============================================
+*.tmp
+*.swp
+*.swo
+*.log
+*.bak
+*~
+
+# =============================================
+#  Directorios de compilación (si usas build/)
+# =============================================
+scripts/C-scripts/services-uninstall/build/
+scripts/C-scripts/close-unused-ports/build/
+
+# ============================================
+#  Archivos de Makefile (dependencias)
+# ============================================
+.depend
+*.d
+
+# =======================
+#  Editor y sistema 
+# =======================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.directory
+*.pid
+*.lock
+
+# ============================================
+#  Archivos de configuración local
+# ============================================
+config.local
+*.local
+.env
+
+# ============================================
+#  Archivos de pruebas y logs
+# ============================================
+test/
+tests/
+*.test
+*.log
+*.out
+coverage/
+*.gcda
+*.gcno
+
+# ============================================
+#  Archivos de backup del sistema
+# ============================================
+.*.swp
+.*.swo
+.*.un~
+
+
