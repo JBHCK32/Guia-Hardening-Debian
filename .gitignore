@@ -9,11 +9,8 @@
 
 # ============================================
 #  Ejecutables (binarios) de C
+# Por ahora ninguno...
 # ============================================
-
-close-unused-ports
-services-uninstall
-
 
 # ============================================
 #  Archivos temporales de compilación
