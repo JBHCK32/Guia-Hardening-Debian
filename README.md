@@ -1,3 +1,43 @@
+# Basic Configuration Automation for Debian Servers.
+
+---
+
+## Description:
+
+This project is aimed at Linux servers, specifically the Debian distribution.
+It is a set of scripts and programs written in C that automates the basic configuration
+of a server with its policies, removal of unused services, detection of open
+ports that may be vulnerable, and basic firewall configuration. There is a script that does all
+of this in a customized way, obtaining user input through the terminal.
+
+It does not plan to be large, but it is functional and automates server configuration,
+making it accessible and guided step by step.
+
+---
+
+## Requirements:
+
+- **System:** Debian (version 11 or higher)
+- **Permissions:** Root or sudo
+- **Dependencies:** gcc, make, ufw/iptables
+
+---
+
+## Documentation:
+
+There are two places in the project to consult the documentation. `src/` serves
+to consult specific documentation about manuals and guides on how the code performs
+the basic configuration of each thing. It also gives examples of a basic and secure
+configuration to use as a reference.
+
+In `docs/` there is a summary of everything discussed in `src/`, and also a slightly
+less technical and more high-level overview than `src/`, which is more specific
+about each thing.
+
+---
+
+### Spanish:
+
 # Automatización De Configuración Basica Para Servidores Debian.
 
 ---
