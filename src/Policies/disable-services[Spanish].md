@@ -60,6 +60,7 @@ uso que vaya a tener su servidor.
 Lo deje en desactivado porque el hardening que hace DebFort es para un servidor basico
 que quiere tener una buena base para empezar a añadir lo que necesite.
 
+
 ## RPC / Portmap | rpcbind.service / portmap.service:
 
 Estos dservicios representados en Debian moderno por `rpcbind.service` y en versiones antiguas como `portmap.service`
@@ -89,6 +90,42 @@ el uso de este servicio con seguridad y precauciones por ser una vulnerabilidad 
 
 De cualqueir manera DebFort te permite de manera general seleccionar los servicios que quieras eliminar de manera directa por tu descición.
 
+
+## Servidor de archivos NFS (nfs-server.service):
+
+Es un gestor del servidor NFS, su función general es permitir que un sistema comparta directorios y archivos con 
+otros equipos en una red, actuando como un servidor de archivos centralizado. Tiene funciones interesantes
+que permiten de manera comoda la gestion de servidores de archivos. Es un servicio muy variado y recomiendo 
+analizarlo, no citare todas sun caracteristicas y funcionalidades para no hacer muy extenso esta parte pero si atacare punto por punto
+que problematicas tiene este servicio.
+
+Numero uno, en sus versiones antiguas tiene vulnerabilidades como la `CVE-2026-53026` que proboca un
+kernel panic por un desbordamiento de memoria del servicio, esto fue corregido pero se tiene que tener
+encuenta en versiones que esten antes de la `6.1.176-1`, eso es algo a tener en cuenta, pero quiero decir 
+no es un factor determinante en el uso del servicio si llega a estar actualizado. Se recomienda
+editar las configuraciones del servicio y desactivar el acceso remoto por root que permite el servicio
+con la opción `root_squash`, tambien configurar la ejecución de programas con las opciiones `noexec` y `nosuid`
+o la activación de bits SUID desde el entorno compartido.
+
+Tambien se recomienda siempre usar el protocolo más reciente que es `NFSv4`, en todo caso se puede
+usar su versión 3 pero solo en usos restrictivos con permisos de seguridad bien configurados, esto
+se puede lograr con configuraciones del firewall restringiendo de manera correcta el puerto 2049 que es
+para NFSv4 con acceso solo a las direcciones IP o subredes que lo necesiten y sea seguro que lo usen.
+
+Todo esto son solo recomendaciones de seguridad si realmente necesita el servicio, pero 
+si realmente no lo a vas a utilizar puede eliminarlo directamente, no es peligroso tenerlo, pero
+usarlo de manera incorrecta si puede llegar a tener implicaciones en al seguridad del servidor.
+
+Yo tome la desición de dejarlo apagado y desactivado por la razón que he repetido constantemente
+de que si a el usuario le llegara ser util que lo tenga a disposición de usarlo o con el mismo
+programa de DebFort tenga el poder de eliminarlo; Además al unicamente tener la visión
+de dejar un servidor plano y sin cosas innecesarias molestando para su uso, me lleva más a desactivar
+de manera automatica servicios he incluso que ese poder que se le da al usuario de elminarlos
+sea realmente util para que tenga todo el derecho de elegir que se queda y que se va.
+
+
+## Samba (SMB/CIFS):
+
 ## Fuentes / Infografia:
 
 ### Avahi-daemon:
@@ -102,3 +139,12 @@ De cualqueir manera DebFort te permite de manera general seleccionar los servici
 ### RCP / Portmap:
 - https://packages.debian.org/bookworm/rpcbind
 - https://manpages.debian.org/testing/rpcbind/rpcbind.8.en.html
+
+### NFS:
+
+- https://wiki.debian.org/NFS/Server
+- https://manpages.debian.org/unstable/nfs-common/nfs.systemd.7.en.html
+- https://manpages.debian.org/unstable/nfs-kernel-server/rpc.nfsd.8.en.html
+- https://packages.debian.org/bookworm/nfs-kernel-server
+- `CVE-2026-53026`: https://security-tracker.debian.org/tracker/CVE-2026-53026
+
